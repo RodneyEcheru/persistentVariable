@@ -1,16 +1,16 @@
-# statefulVariable
+# persistentVariable
 
 ### description
 A simple and efficient way to manage state
 
-The statefulVariable Library is lightweight and provides a simple and efficient way to create and persist data across page refreshes as well as being reactive for use cases such as a shopping cart and user states similar to what state managers do in other libraries and frameworks. 
+The persistentVariable Library is lightweight and provides a simple and efficient way to create and persist data across page refreshes as well as being reactive for use cases such as a shopping cart and user states in svelte 
 
 ## Installation
 
-You can install the statefulVariable library using npm:
+You can install the persistentVariable library using npm:
 
 ```shell
-npm install easystatemanager
+npm install easystatemanagersvelte
 ```
 
 # Usage
@@ -20,28 +20,28 @@ npm install easystatemanager
 ### example 1
 
 ```shell
-// Import the statefulVariable library
-import statefulVariable from "easystatemanager";
+// Import the persistentVariable library
+import persistentVariable from "easystatemanagersvelte";
 
 // store initial value in a variable
-const myStatefulVariable = statefulVariable("initial value");
+const mypersistentVariable = persistentVariable("initial value");
 
 // get the current value
-console.log(myStatefulVariable.value); // "initial value"
+console.log($mypersistentVariable); // "initial value"
 
 // change value
-myStatefulVariable.set("new value");
+mypersistentVariable.set("new value");
 
 // get the new value
-console.log(myStatefulVariable.value); // "new value"
+console.log($mypersistentVariable); // "new value"
 ```
 ### Example 2
 ```shell
-// Import the statefulVariable library
-import statefulVariable from "easystatemanager";
+// Import the persistentVariable library
+import persistentVariable from "easystatemanagersvelte";
 
 // create the stateful variable with an initial value of an empty array
-const myarray = statefulVariable("myarray", []);
+const myarray = persistentVariable("myarray", []);
 
 // subscribe to the variable and log the value whenever it changes
 myarray.subscribe((value) => {
@@ -57,11 +57,11 @@ myarray.update((value) => [...value, "item 2"]);
 
 ### example 3
 ```shell
-// Import the statefulVariable library
-import statefulVariable from "easystatemanager";
+// Import the persistentVariable library
+import persistentVariable from "easystatemanagersvelte";
 
 // Create a stateful variable with an initial value
-const cart = statefulVariable('cart', []);
+const cart = persistentVariable('cart', []);
 
 // Subscribe to changes in the cart value
 const unsubscribe = cart.subscribe((value) => {
@@ -72,7 +72,7 @@ const unsubscribe = cart.subscribe((value) => {
 cart.set(['item1', 'item2', 'item3']);
 
 // Access the current value of the cart
-console.log('Current cart value:', cart.value);
+console.log('Current cart value:', $cart);
 
 // Unsubscribe from further changes
 unsubscribe();
@@ -81,11 +81,11 @@ unsubscribe();
 ## Basic Shopping Cart Example
 
 ```shell
-// Import the statefulVariable library
-import statefulVariable from "easystatemanager";
+// Import the persistentVariable library
+import persistentVariable from "easystatemanagersvelte";
 
 // Create a stateful variable for the shopping cart
-const cart = statefulVariable('cart', []);
+const cart = persistentVariable('cart', []);
 
 // Function to add an item to the cart
 function addItem(item) {
@@ -117,14 +117,14 @@ addItem('item3');
 removeItem('item2');
 
 // Access the current value of the cart
-console.log('Current cart value:', cart.value);
+console.log('Current cart value:', $cart);
 
 // Unsubscribe from further changes
 unsubscribe();
 ```
 
 ### inspiration
-This library was inspired by svelte but with persistence added and freedom to use across other different frameworks as well as when not using any javascript framework or library
+This library was inspired by svelte but with persistence added
 
 ## license
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

@@ -1,14 +1,14 @@
 {
-  "name": "easystatemanager",
-  "version": "1.0.11",
-  "description": "a lightweight JavaScript library that provides a simple and efficient way to manage state",
+  "name": "easystatemanagersvelte",
+  "version": "1.0.0",
+  "description": "a lightweight svelte library that provides a simple and efficient way to manage and persist state",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RodneyEcheru/statefulVariable.git"
+    "url": "git+https://github.com/RodneyEcheru/persistentVariable.git"
   },
   "keywords": [
     "state",
@@ -16,15 +16,16 @@
     "manager",
     "persist",
     "persisted",
-    "reactive"
+    "reactive",
+    "svelte"
   ],
   "author": "RodneyEcheru",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/RodneyEcheru/statefulVariable/issues"
+    "url": "https://github.com/RodneyEcheru/persistentVariable/issues"
   },
-  "homepage": "https://github.com/RodneyEcheru/statefulVariable#readme",
+  "homepage": "https://github.com/RodneyEcheru/persistentVariable#readme",
   "dependencies": {
-    "easystatemanager": "^1.0.5"
+
   }
 }
