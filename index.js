@@ -1,51 +1,49 @@
 
-import { writable } from 'svelte/store';
+export const persistentVariable = (storeKey, initialValue) => {
+    let subscriptions = [];
+    let storeValue;
 
-const persistentVariable = (key, initialValue) => {
-    let value = initialValue;
-    let subscribers = [];
+    let isLocalStorageAccessible = false;
 
-    // Check if localStorage is accessible
-    const isLocalStorageAccessible = () => {
-        try {
-            const testKey = '__storage_test__';
-            localStorage.setItem(testKey, testKey);
-            localStorage.removeItem(testKey);
-            return true;
-        } catch (e) {
-            return false;
-        }
-    };
-
-    // Try to get the value from localStorage if it exists and is accessible
-    if (isLocalStorageAccessible()) {
-        const storedValue = localStorage.getItem(key);
-        if (storedValue !== null) {
-            value = JSON.parse(storedValue);
-        }
+    try {
+        localStorage.setItem('__test__', '__test__');
+        localStorage.removeItem('__test__');
+        isLocalStorageAccessible = true;
+    } catch (e) {
+        // Local storage is not accessible
     }
 
-    const { subscribe, set, update } = writable(value);
-
-    // Override the default set method to persist the new value to localStorage if accessible
-    const persistentSet = (newValue) => {
-        set(newValue);
-
-        if (isLocalStorageAccessible()) {
-            localStorage.setItem(key, JSON.stringify(newValue));
+    if (isLocalStorageAccessible) {
+        let currentStoreString = localStorage.getItem(storeKey);
+        if (currentStoreString === null || currentStoreString === undefined) {
+            storeValue = initialValue;
+            localStorage.setItem(storeKey, JSON.stringify(storeValue));
+        } else {
+            storeValue = JSON.parse(currentStoreString);
         }
-    };
-
-    function persistUpdate(callback) {
-        persistentSet(callback(value));
+    } else {
+        storeValue = initialValue;
     }
 
-    // Add a value property to access the current value of the writable store
-    return {
-        subscribe,
-        set: persistentSet,
-        update: persistUpdate,
+    const subscribe = (subscription) => {
+        subscription(storeValue);
+        subscriptions = [...subscriptions, subscription];
+        return () => {
+            subscriptions = subscriptions.filter(s => s !== subscription);
+        };
     };
+
+    const set = (value) => {
+        storeValue = value;
+        if (isLocalStorageAccessible) {
+            localStorage.setItem(storeKey, JSON.stringify(value));
+        }
+        subscriptions.forEach(subscription => subscription(storeValue));
+    };
+
+    const update = (update_func) => set(update_func(storeValue));
+
+    return { subscribe, set, update };
 };
 
 export default persistentVariable;
