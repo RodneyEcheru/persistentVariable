@@ -1,5 +1,5 @@
 
-export const persistentVariable = (storeKey, initialValue) => {
+const persistentVariable = (storeKey, initialValue) => {
     let subscriptions = [];
     let storeValue;
 
@@ -46,5 +46,5 @@ export const persistentVariable = (storeKey, initialValue) => {
     return { subscribe, set, update };
 };
 
-export default persistentVariable;
+module.exports = persistentVariable;
 
