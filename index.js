@@ -47,4 +47,3 @@ const persistentVariable = (storeKey, initialValue) => {
 };
 
 module.exports = persistentVariable;
-

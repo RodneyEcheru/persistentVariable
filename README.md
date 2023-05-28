@@ -27,13 +27,10 @@ import persistentVariable from "easystatemanagersvelte";
 const mypersistentVariable = persistentVariable("initial value");
 
 // get the current value
-console.log($mypersistentVariable); // "initial value"
+$: console.log($mypersistentVariable); // log whenever value changes
 
 // change value
 mypersistentVariable.set("new value");
-
-// get the new value
-console.log($mypersistentVariable); // "new value"
 ```
 ### Example 2
 ```shell
