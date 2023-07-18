@@ -15,11 +15,11 @@ const persistentVariable = (storeKey, initialValue) => {
 
     if (isLocalStorageAccessible) {
         let currentStoreString = localStorage.getItem(storeKey);
-        if (currentStoreString === null || currentStoreString === undefined) {
-            storeValue = initialValue;
-            localStorage.setItem(storeKey, JSON.stringify(storeValue));
-        } else {
+        try {
             storeValue = JSON.parse(currentStoreString);
+        } catch {
+            localStorage.setItem(storeKey, JSON.stringify(initialValue));
+            storeValue = initialValue;
         }
     } else {
         storeValue = initialValue;

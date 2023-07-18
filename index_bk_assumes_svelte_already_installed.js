@@ -1,7 +1,7 @@
 
 import { writable } from 'svelte/store';
 
-const persistentVariable = (key, initialValue) => {
+const persistentVariableBackup = (key, initialValue) => {
     let value = initialValue;
     let subscribers = [];
 
@@ -48,5 +48,5 @@ const persistentVariable = (key, initialValue) => {
     };
 };
 
-export default persistentVariable;
+
 

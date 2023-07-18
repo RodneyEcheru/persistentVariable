@@ -1,6 +1,6 @@
 {
   "name": "easystatemanagersvelte",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a lightweight svelte library that provides a simple and efficient way to manage and persist state",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,5 @@
     "url": "https://github.com/RodneyEcheru/persistentVariable/issues"
   },
   "homepage": "https://github.com/RodneyEcheru/persistentVariable#readme",
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }
