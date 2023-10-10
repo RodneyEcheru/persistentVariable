@@ -1,6 +1,6 @@
 {
   "name": "easystatemanagersvelte",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "a lightweight svelte library that provides a simple and efficient way to manage and persist state to local storage",
   "main": "index.js",
   "scripts": {
