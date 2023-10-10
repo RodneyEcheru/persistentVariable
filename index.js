@@ -21,6 +21,10 @@ const persistentVariable = (storeKey, initialValue) => {
         try { // check if initial exists in localstorage
             currentStoreString = localStorage.getItem(storeKey);
             storeValue = JSON.parse(currentStoreString);
+
+            if(storeValue === null) {
+                storeValue = initialValue;
+            }
         } catch { // set initial value if none exists in localstorage
             localStorage.setItem(storeKey, JSON.stringify(initialValue));
             storeValue = initialValue;
