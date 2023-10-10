@@ -3,8 +3,10 @@ const persistentVariable = (storeKey, initialValue) => {
     let subscriptions = [];
     let storeValue;
 
+    // store localstorage state
     let isLocalStorageAccessible = false;
 
+    // set localStorage state
     try {
         localStorage.setItem('__test__', '__test__');
         localStorage.removeItem('__test__');
@@ -13,11 +15,13 @@ const persistentVariable = (storeKey, initialValue) => {
         // Local storage is not accessible
     }
 
+    // set initial value
     if (isLocalStorageAccessible) {
-        let currentStoreString = localStorage.getItem(storeKey);
-        try {
+        let currentStoreString;
+        try { // check if initial exists in localstorage
+            currentStoreString = localStorage.getItem(storeKey);
             storeValue = JSON.parse(currentStoreString);
-        } catch {
+        } catch { // set initial value if none exists in localstorage
             localStorage.setItem(storeKey, JSON.stringify(initialValue));
             storeValue = initialValue;
         }
