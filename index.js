@@ -22,7 +22,7 @@ const persistentVariable = (storeKey, initialValue) => {
             currentStoreString = localStorage.getItem(storeKey);
             storeValue = JSON.parse(currentStoreString);
 
-            if(storeValue === null) {
+            if(storeValue === null || storeValue === 'null' || storeValue === undefined || storeValue === 'undefined') {
                 storeValue = initialValue;
             }
         } catch { // set initial value if none exists in localstorage
