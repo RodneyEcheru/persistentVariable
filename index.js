@@ -53,7 +53,13 @@ const persistentVariable = (storeKey, initialValue) => {
 
     const update = (update_func) => set(update_func(storeValue));
 
-    return { subscribe, set, update };
+    return {
+        subscribe,
+        set,
+        update,
+        get value() {
+            return storeValue;
+        } };
 };
 
 module.exports = persistentVariable;
